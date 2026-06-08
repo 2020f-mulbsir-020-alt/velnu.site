@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Velnu — A Digital Sanctuary of Doors. An infinite architectural realm where every threshold reveals a new reality, memory, or impossible world.">
+  <meta name="keywords" content="Velnu, digital art, doors, portal, architecture, exploration, immersive experience">
+  <meta name="author" content="Velnu">
+  <meta name="theme-color" content="#0A0C10">
+  <meta property="og:title" content="Velnu — Digital Sanctuary of Doors">
+  <meta property="og:description" content="Wander through an endless palace of doors. Every threshold reveals a new world, memory, or possibility.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://velnu.site">
+  <title>Velnu — Digital Sanctuary of Doors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Velnu",
+    "alternateName": "Velnu — Digital Sanctuary of Doors",
+    "url": "https://velnu.site",
+    "description": "An infinite architectural realm where every door leads to a different reality, memory, emotion, or impossible world."
+  }
+  </script>
+</head>
+<body>
+
+  <a href="#first-door" class="skip-link">Skip to the first door</a>
+
+  <!-- Floating Key Navigation -->
+  <nav class="key-nav" aria-label="Palace navigation">
+    <button class="key-nav__trigger" aria-expanded="false" aria-controls="key-nav-radial" aria-label="Open palace navigation">
+      <span class="key-nav__icon" aria-hidden="true">
+        <span class="key-nav__bow"></span>
+        <span class="key-nav__shaft"></span>
+        <span class="key-nav__bit"></span>
+      </span>
+    </button>
+    <ul class="key-nav__radial" id="key-nav-radial" role="menu" hidden>
+      <li role="none"><a href="#memory-doors" role="menuitem" data-key="0"><span class="key-nav__label">Memories</span></a></li>
+      <li role="none"><a href="#infinite-corridor" role="menuitem" data-key="1"><span class="key-nav__label">Portals</span></a></li>
+      <li role="none"><a href="#secret-gates" role="menuitem" data-key="2"><span class="key-nav__label">Gardens</span></a></li>
+      <li role="none"><a href="#impossible-architecture" role="menuitem" data-key="3"><span class="key-nav__label">Architecture</span></a></li>
+      <li role="none"><a href="#celestial-threshold" role="menuitem" data-key="4"><span class="key-nav__label">Celestial</span></a></li>
+      <li role="none"><a href="#final-threshold" role="menuitem" data-key="5"><span class="key-nav__label">Contact</span></a></li>
+    </ul>
+    <div class="key-nav__ring" aria-hidden="true"></div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- SECTION 1: THE HALL OF THE FIRST DOOR -->
+    <section id="first-door" class="section section--first-door" aria-label="The Hall of the First Door">
+      <div class="first-door__void">
+        <canvas class="first-door__canvas" aria-hidden="true"></canvas>
+        <div class="first-door__approach">
+          <div class="door door--first" aria-hidden="true">
+            <div class="door__frame"></div>
+            <div class="door__panel door__panel--left"></div>
+            <div class="door__panel door__panel--right"></div>
+            <div class="door__light-spill"></div>
+            <div class="door__handle"></div>
+          </div>
+        </div>
+        <div class="first-door__floor-glow" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE CORRIDOR OF INFINITE ENTRANCES -->
+    <section id="infinite-corridor" class="section section--corridor" aria-label="The Corridor of Infinite Entrances">
+      <canvas class="corridor__canvas" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">Corridor of Infinite Entrances</h2>
+        <p class="section-subtitle">Every doorway leads elsewhere</p>
+      </div>
+      <div class="corridor__perspective">
+        <ul class="door-wall door-wall--left" role="list" aria-label="Doors on the left wall"></ul>
+        <div class="corridor__vanishing" aria-hidden="true"></div>
+        <ul class="door-wall door-wall--right" role="list" aria-label="Doors on the right wall"></ul>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE MEMORY DOORS -->
+    <section id="memory-doors" class="section section--memory" aria-label="The Memory Doors">
+      <canvas class="memory__canvas" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">The Memory Doors</h2>
+        <p class="section-subtitle">Fragments suspended in darkness</p>
+      </div>
+      <div class="memory__gallery" role="list" aria-label="Memory door gallery"></div>
+    </section>
+
+    <!-- SECTION 4: THE IMPOSSIBLE ARCHITECTURE CHAMBER -->
+    <section id="impossible-architecture" class="section section--impossible" aria-label="The Impossible Architecture Chamber">
+      <canvas class="impossible__canvas" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">Impossible Architecture</h2>
+        <p class="section-subtitle">Where geometry defies reason</p>
+      </div>
+      <div class="impossible__chamber" aria-hidden="true"></div>
+    </section>
+
+    <!-- SECTION 5: THE GARDEN OF SECRET GATES -->
+    <section id="secret-gates" class="section section--garden" aria-label="The Garden of Secret Gates">
+      <canvas class="garden__canvas" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">Garden of Secret Gates</h2>
+        <p class="section-subtitle">Entrances hidden among the living</p>
+      </div>
+      <div class="garden__scene" role="list" aria-label="Secret gates in the garden"></div>
+    </section>
+
+    <!-- SECTION 6: THE CLOCKWORK PORTALS -->
+    <section id="clockwork-portals" class="section section--clockwork" aria-label="The Clockwork Portals">
+      <canvas class="clockwork__canvas" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">The Clockwork Portals</h2>
+        <p class="section-subtitle">Gears of transformation</p>
+      </div>
+      <div class="clockwork__hall">
+        <div class="clockwork__gear clockwork__gear--large" aria-hidden="true"></div>
+        <div class="clockwork__gear clockwork__gear--medium" aria-hidden="true"></div>
+        <div class="clockwork__portal-door" aria-hidden="true">
+          <div class="clockwork__door-slice"></div>
+          <div class="clockwork__door-slice"></div>
+          <div class="clockwork__door-slice"></div>
+          <div class="clockwork__door-slice"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: THE LIBRARY OF KEYS -->
+    <section id="library-of-keys" class="section section--library" aria-label="The Library of Keys">
+      <canvas class="library__canvas" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">The Library of Keys</h2>
+        <p class="section-subtitle">Millions of stories waiting to unlock</p>
+      </div>
+      <div class="library__shelves" role="list" aria-label="Keys in the infinite library"></div>
+    </section>
+
+    <!-- SECTION 8: THE CELESTIAL THRESHOLD -->
+    <section id="celestial-threshold" class="section section--celestial" aria-label="The Celestial Threshold">
+      <canvas class="celestial__webgl" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">The Celestial Threshold</h2>
+        <p class="section-subtitle">Portals into the cosmos</p>
+      </div>
+      <div class="celestial__portals" role="list" aria-label="Cosmic door portals"></div>
+    </section>
+
+    <!-- SECTION 9: THE MIRROR DOOR MAZE -->
+    <section id="mirror-maze" class="section section--mirror" aria-label="The Mirror Door Maze">
+      <canvas class="mirror__canvas" aria-hidden="true"></canvas>
+      <div class="section-header section-header--subtle">
+        <h2 class="section-title">The Mirror Door Maze</h2>
+        <p class="section-subtitle">Reflections of what might have been</p>
+      </div>
+      <div class="mirror__labyrinth" role="list" aria-label="Reflective doors"></div>
+    </section>
+
+    <!-- SECTION 10: THE FINAL THRESHOLD -->
+    <section id="final-threshold" class="section section--final" aria-label="The Final Threshold">
+      <canvas class="final__canvas" aria-hidden="true"></canvas>
+      <div class="final__doorway">
+        <div class="door door--final" aria-hidden="true">
+          <div class="door__frame door__frame--grand"></div>
+          <div class="door__panel door__panel--left"></div>
+          <div class="door__panel door__panel--right"></div>
+          <div class="door__surface-glow"></div>
+        </div>
+        <div class="final__content">
+          <h2 class="final__title">Every Door Is A Beginning</h2>
+          <button class="final__handle-btn" aria-label="Open Velnu — enter the sanctuary">
+            <span class="final__handle" aria-hidden="true"></span>
+            <span class="final__btn-text">OPEN VELNU</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Contact Portal Dialog -->
+  <dialog class="contact-portal" id="contact-portal" aria-labelledby="contact-title">
+    <div class="contact-portal__frame">
+      <button class="contact-portal__close" aria-label="Close portal">&times;</button>
+      <h2 id="contact-title" class="contact-portal__title">Beyond the Final Threshold</h2>
+      <p class="contact-portal__desc">You have reached the edge of the palace. Every door you opened was a beginning — this one leads outward.</p>
+      <div class="contact-portal__links">
+        <a href="mailto:hello@velnu.site" class="contact-portal__link">hello@velnu.site</a>
+      </div>
+      <p class="contact-portal__whisper">Velnu — Digital Sanctuary of Doors</p>
+    </div>
+  </dialog>
+
+  <script src="js/utils.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/webgl.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/sections/firstDoor.js"></script>
+  <script src="js/sections/corridor.js"></script>
+  <script src="js/sections/memoryDoors.js"></script>
+  <script src="js/sections/impossibleArch.js"></script>
+  <script src="js/sections/secretGates.js"></script>
+  <script src="js/sections/clockworkPortals.js"></script>
+  <script src="js/sections/libraryOfKeys.js"></script>
+  <script src="js/sections/celestialThreshold.js"></script>
+  <script src="js/sections/mirrorMaze.js"></script>
+  <script src="js/sections/finalThreshold.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

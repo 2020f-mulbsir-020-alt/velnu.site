@@ -1,0 +1,823 @@
+/* ============================================
+   VELNU — Section Styles
+   ============================================ */
+
+/* Shared Door Component */
+.door {
+  position: relative;
+  perspective: 1200px;
+  width: 100%;
+  height: 100%;
+}
+
+.door__frame {
+  position: absolute;
+  inset: -12px;
+  border: 2px solid rgba(181, 157, 106, 0.4);
+  box-shadow: inset 0 0 30px rgba(181, 157, 106, 0.08), var(--glow-door);
+}
+
+.door__frame--grand {
+  inset: -20px;
+  border-width: 3px;
+}
+
+.door__panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--obsidian) 0%, #1a1d26 50%, var(--velvet-indigo) 100%);
+  border: 1px solid rgba(181, 157, 106, 0.2);
+  transform-origin: left center;
+  transition: transform var(--transition-door);
+  backface-visibility: hidden;
+}
+
+.door__panel--left {
+  left: 0;
+  transform-origin: left center;
+  border-right: 1px solid rgba(181, 157, 106, 0.15);
+}
+
+.door__panel--right {
+  right: 0;
+  transform-origin: right center;
+  border-left: 1px solid rgba(181, 157, 106, 0.15);
+}
+
+.door--open .door__panel--left {
+  transform: perspective(1200px) rotateY(-75deg);
+}
+
+.door--open .door__panel--right {
+  transform: perspective(1200px) rotateY(75deg);
+}
+
+.door__light-spill {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(244, 246, 248, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-door);
+  pointer-events: none;
+}
+
+.door--open .door__light-spill {
+  opacity: 1;
+}
+
+.door__handle {
+  position: absolute;
+  right: 18%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--brass), var(--dusty-gold));
+  border-radius: 2px;
+  box-shadow: var(--glow-brass);
+}
+
+.door__surface-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(181, 157, 106, 0.08) 0%, transparent 40%, rgba(181, 157, 106, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* ============================================
+   SECTION 1: First Door
+   ============================================ */
+
+.section--first-door {
+  height: 300vh;
+  min-height: 300vh;
+}
+
+.first-door__void {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--midnight);
+  overflow: hidden;
+}
+
+.first-door__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.first-door__approach {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  perspective: 800px;
+}
+
+.first-door__approach .door--first {
+  width: clamp(80px, 12vw, 140px);
+  height: clamp(140px, 22vh, 240px);
+  transform: scale(var(--door-scale, 0.35));
+  opacity: calc(0.4 + var(--door-proximity, 0) * 0.6);
+  transition: opacity 0.1s linear;
+  will-change: transform;
+}
+
+.section--first-door.door-revealed .first-door__approach .door--first {
+  width: clamp(160px, 28vw, 320px);
+  height: clamp(280px, 50vh, 520px);
+}
+
+.first-door__floor-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 30%;
+  background: radial-gradient(ellipse at center bottom, rgba(181, 157, 106, 0.12) 0%, transparent 70%);
+  opacity: var(--floor-glow, 0);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================
+   SECTION 2: Infinite Corridor
+   ============================================ */
+
+.section--corridor {
+  background: linear-gradient(180deg, var(--midnight) 0%, var(--obsidian) 30%, var(--midnight) 100%);
+  padding-bottom: 4rem;
+}
+
+.corridor__perspective {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-height: 70vh;
+  perspective: 600px;
+}
+
+.corridor__vanishing {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(181, 157, 106, 0.3), transparent);
+  opacity: 0.4;
+}
+
+.door-wall {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 42%;
+  padding: 2rem 0;
+}
+
+.door-wall--left {
+  align-items: flex-end;
+}
+
+.door-wall--right {
+  align-items: flex-start;
+}
+
+.corridor-door {
+  position: relative;
+  width: clamp(60px, 8vw, 100px);
+  height: clamp(100px, 14vw, 160px);
+  cursor: pointer;
+  transition: transform 0.4s, filter 0.4s;
+  transform: scale(calc(0.7 + var(--depth, 0.5) * 0.3));
+  opacity: calc(0.5 + var(--depth, 0.5) * 0.5);
+}
+
+.corridor-door:hover,
+.corridor-door:focus-visible {
+  transform: scale(calc(0.75 + var(--depth, 0.5) * 0.35)) translateY(-4px);
+  filter: brightness(1.2);
+  outline: none;
+}
+
+.corridor-door__frame {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(181, 157, 106, calc(0.2 + var(--depth, 0.5) * 0.3));
+}
+
+.corridor-door__panel {
+  position: absolute;
+  inset: 4px;
+  background: var(--door-bg, var(--obsidian));
+  border: 1px solid rgba(215, 221, 232, 0.08);
+}
+
+.corridor-door__glow {
+  position: absolute;
+  inset: -4px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  background: radial-gradient(circle, rgba(181, 157, 106, 0.2), transparent 70%);
+}
+
+.corridor-door:hover .corridor-door__glow {
+  opacity: 1;
+}
+
+.corridor-door[data-type="stone"] .corridor-door__panel {
+  background: linear-gradient(145deg, #2a2a2e, #1a1a1e);
+}
+
+.corridor-door[data-type="glass"] .corridor-door__panel {
+  background: linear-gradient(145deg, rgba(215, 221, 232, 0.15), rgba(26, 58, 92, 0.3));
+  backdrop-filter: blur(2px);
+}
+
+.corridor-door[data-type="celestial"] .corridor-door__panel {
+  background: radial-gradient(circle at 30% 30%, #1a3a5c, #0a0c10);
+  box-shadow: inset 0 0 20px rgba(100, 150, 255, 0.2);
+}
+
+.corridor-door[data-type="mechanical"] .corridor-door__panel {
+  background: repeating-linear-gradient(0deg, #1a1d26, #1a1d26 4px, #14161c 4px, #14161c 8px);
+}
+
+.corridor-door[data-type="living"] .corridor-door__panel {
+  background: linear-gradient(145deg, #1a2a1a, #0f1a0f);
+  border-color: rgba(100, 140, 80, 0.2);
+}
+
+.corridor-door[data-type="floating"] {
+  animation: float-door 6s ease-in-out infinite;
+}
+
+/* ============================================
+   SECTION 3: Memory Doors
+   ============================================ */
+
+.section--memory {
+  background: var(--midnight);
+  padding-bottom: 4rem;
+}
+
+.memory__gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.memory-door {
+  position: relative;
+  aspect-ratio: 3/5;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.memory-door:hover,
+.memory-door:focus-visible {
+  transform: translateY(-8px);
+  outline: none;
+}
+
+.memory-door__frame {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(181, 157, 106, 0.25);
+  background: var(--obsidian);
+  overflow: hidden;
+}
+
+.memory-door__scene {
+  position: absolute;
+  inset: 4px;
+  opacity: 0.6;
+  transition: opacity 0.5s;
+}
+
+.memory-door:hover .memory-door__scene,
+.memory-door.open .memory-door__scene {
+  opacity: 1;
+}
+
+.memory-door__light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 100%, rgba(181, 157, 106, 0.3), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.memory-door.open .memory-door__light {
+  opacity: 1;
+}
+
+.memory-door__label {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: rgba(215, 221, 232, 0.6);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   SECTION 4: Impossible Architecture
+   ============================================ */
+
+.section--impossible {
+  background: radial-gradient(ellipse at 50% 50%, var(--velvet-indigo) 0%, var(--midnight) 70%);
+  min-height: 120vh;
+}
+
+.impossible__chamber {
+  position: relative;
+  height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+/* ============================================
+   SECTION 5: Garden of Secret Gates
+   ============================================ */
+
+.section--garden {
+  background: linear-gradient(180deg, var(--midnight) 0%, #0f1410 50%, var(--midnight) 100%);
+  padding-bottom: 4rem;
+}
+
+.garden__scene {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.garden-gate {
+  position: relative;
+  aspect-ratio: 2/3;
+  cursor: pointer;
+}
+
+.garden-gate__foliage {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  right: -10%;
+  height: 40%;
+  background: radial-gradient(ellipse, rgba(30, 50, 30, 0.8), transparent 70%);
+  border-radius: 50% 50% 0 0;
+}
+
+.garden-gate__door {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 55%;
+  border: 1px solid rgba(181, 157, 106, 0.3);
+  background: linear-gradient(180deg, rgba(20, 22, 28, 0.9), rgba(15, 20, 16, 0.95));
+  transition: box-shadow 0.5s, transform 0.5s;
+}
+
+.garden-gate:hover .garden-gate__door,
+.garden-gate:focus-visible .garden-gate__door {
+  box-shadow: 0 0 30px rgba(181, 157, 106, 0.2);
+  transform: translateX(-50%) scale(1.03);
+  outline: none;
+}
+
+.garden-gate[data-bloom="true"] .garden-gate__door::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 30%;
+  background: radial-gradient(circle, rgba(181, 157, 106, 0.3), transparent 70%);
+  border-radius: 50%;
+  animation: bloom-pulse 3s ease-in-out infinite;
+}
+
+.garden-gate[data-water="true"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(180deg, transparent, rgba(26, 58, 92, 0.3));
+}
+
+/* ============================================
+   SECTION 6: Clockwork Portals
+   ============================================ */
+
+.section--clockwork {
+  background: linear-gradient(180deg, var(--obsidian) 0%, #12141a 50%, var(--midnight) 100%);
+  min-height: 110vh;
+}
+
+.clockwork__hall {
+  position: relative;
+  height: 70vh;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.clockwork__gear {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px dashed rgba(181, 157, 106, 0.3);
+  animation: gear-spin linear infinite;
+}
+
+.clockwork__gear--large {
+  width: clamp(200px, 40vw, 400px);
+  height: clamp(200px, 40vw, 400px);
+  animation-duration: 30s;
+}
+
+.clockwork__gear--medium {
+  width: clamp(100px, 20vw, 180px);
+  height: clamp(100px, 20vw, 180px);
+  top: 10%;
+  right: 10%;
+  animation-duration: 15s;
+  animation-direction: reverse;
+}
+
+.clockwork__portal-door {
+  position: relative;
+  width: clamp(120px, 20vw, 200px);
+  height: clamp(120px, 20vw, 200px);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(181, 157, 106, 0.4);
+  animation: portal-rotate 20s linear infinite;
+}
+
+.clockwork__door-slice {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: var(--obsidian);
+  border: 1px solid rgba(181, 157, 106, 0.15);
+}
+
+.clockwork__door-slice:nth-child(1) { top: 0; left: 0; }
+.clockwork__door-slice:nth-child(2) { top: 0; right: 0; }
+.clockwork__door-slice:nth-child(3) { bottom: 0; left: 0; }
+.clockwork__door-slice:nth-child(4) { bottom: 0; right: 0; }
+
+/* ============================================
+   SECTION 7: Library of Keys
+   ============================================ */
+
+.section--library {
+  background: linear-gradient(180deg, var(--midnight) 0%, #0e0c0a 40%, var(--obsidian) 100%);
+  padding-bottom: 4rem;
+}
+
+.library__shelves {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.library-key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.library-key:hover,
+.library-key:focus-visible {
+  transform: translateY(-4px) rotate(-5deg);
+  outline: none;
+}
+
+.library-key__icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.library-key__icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--key-color, var(--brass));
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.library-key__icon::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 2px;
+  height: 18px;
+  background: var(--key-color, var(--brass));
+  transform: translateX(-50%);
+  box-shadow: 4px 12px 0 -1px var(--key-color, var(--brass));
+}
+
+.library-key__name {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-style: italic;
+  color: rgba(215, 221, 232, 0.5);
+  text-align: center;
+}
+
+.library-key[data-type="golden"] { --key-color: #d4af37; }
+.library-key[data-type="crystal"] { --key-color: #a8d8ea; }
+.library-key[data-type="ancient"] { --key-color: #8b7355; }
+.library-key[data-type="floating"] { animation: float-key 4s ease-in-out infinite; }
+
+/* ============================================
+   SECTION 8: Celestial Threshold
+   ============================================ */
+
+.section--celestial {
+  background: var(--midnight);
+  min-height: 120vh;
+}
+
+.celestial__webgl {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.celestial__portals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.celestial-portal {
+  width: clamp(100px, 15vw, 160px);
+  height: clamp(140px, 20vw, 220px);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.celestial-portal:hover,
+.celestial-portal:focus-visible {
+  transform: scale(1.05);
+  outline: none;
+}
+
+.celestial-portal__frame {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(181, 157, 106, 0.3);
+  overflow: hidden;
+}
+
+.celestial-portal__nebula {
+  position: absolute;
+  inset: 4px;
+  border-radius: 2px;
+}
+
+/* ============================================
+   SECTION 9: Mirror Maze
+   ============================================ */
+
+.section--mirror {
+  background: linear-gradient(135deg, var(--obsidian) 0%, var(--velvet-indigo) 50%, var(--midnight) 100%);
+  padding-bottom: 4rem;
+}
+
+.mirror__labyrinth {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 640px) {
+  .mirror__labyrinth {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.mirror-door {
+  aspect-ratio: 3/4;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s;
+}
+
+.mirror-door:hover,
+.mirror-door:focus-visible {
+  transform: scale(1.02);
+  outline: none;
+}
+
+.mirror-door__surface {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(215, 221, 232, 0.2);
+  background: linear-gradient(135deg, rgba(215, 221, 232, 0.08), rgba(42, 45, 74, 0.4));
+  overflow: hidden;
+}
+
+.mirror-door__reflection {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  transition: opacity 0.4s, transform 0.6s;
+}
+
+.mirror-door:hover .mirror-door__reflection {
+  opacity: 0.8;
+  transform: scale(1.05) rotate(1deg);
+}
+
+.mirror-door__label {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(215, 221, 232, 0.4);
+}
+
+/* ============================================
+   SECTION 10: Final Threshold
+   ============================================ */
+
+.section--final {
+  background: var(--midnight);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.final__doorway {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+.final__doorway .door--final {
+  width: clamp(200px, 40vw, 420px);
+  height: clamp(340px, 65vh, 680px);
+  margin: 0 auto 3rem;
+}
+
+.final__content {
+  position: relative;
+  z-index: 3;
+}
+
+.final__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--moonstone);
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s, transform 1s;
+}
+
+.section--final.visible .final__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.final__handle-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 2rem;
+  transition: transform 0.5s;
+}
+
+.final__handle-btn:hover,
+.final__handle-btn:focus-visible {
+  transform: scale(1.03);
+  outline: none;
+}
+
+.final__handle {
+  display: block;
+  width: clamp(80px, 15vw, 140px);
+  height: clamp(16px, 3vw, 24px);
+  background: linear-gradient(to bottom, var(--brass), var(--dusty-gold));
+  border-radius: 8px;
+  box-shadow: var(--glow-brass);
+  transition: box-shadow 0.6s, transform 0.6s;
+}
+
+.final__handle-btn:hover .final__handle,
+.final__handle-btn:focus-visible .final__handle {
+  box-shadow: 0 0 60px rgba(181, 157, 106, 0.5);
+  transform: rotate(-8deg);
+}
+
+.door--final.door--unlocking .door__panel--left {
+  transform: perspective(1200px) rotateY(-15deg);
+}
+
+.door--final.door--unlocking .door__panel--right {
+  transform: perspective(1200px) rotateY(15deg);
+}
+
+.door--final.door--open .door__panel--left {
+  transform: perspective(1200px) rotateY(-85deg);
+}
+
+.door--final.door--open .door__panel--right {
+  transform: perspective(1200px) rotateY(85deg);
+}
+
+.final__btn-text {
+  font-family: var(--font-display);
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  letter-spacing: 0.25em;
+  color: var(--brass);
+  transition: color 0.4s, letter-spacing 0.4s;
+}
+
+.final__handle-btn:hover .final__btn-text {
+  color: var(--moonstone);
+  letter-spacing: 0.3em;
+}
+
+.final__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
